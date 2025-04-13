@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import './ProductList.css'
 import CartItem from './CartItem';
 import { addItem } from './CartSlice';
+
 function ProductList({ onHomeClick }) {
     const [showCart, setShowCart] = useState(false);
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
@@ -259,7 +260,6 @@ function ProductList({ onHomeClick }) {
     };
 
     const handleAddToCart = (product) => {
-        console.log("adding to cart")
         dispatch(addItem(product));
         setAddedToCart((prevState) => ({
             ...prevState,
@@ -297,6 +297,8 @@ function ProductList({ onHomeClick }) {
             <div className="product-card" key={plantIndex}>
                 <img className="product-image" src={plant.image} alt={plant.name} />
                 <div className="product-title">{plant.name}</div>
+                <p>{plant.description}</p><br />
+                <p>Cost: {plant.cost}</p>
                 {/*Similarly like the above plant.name show other details like description and cost*/}
                 <button  className="product-button" onClick={() => handleAddToCart(plant)}>Add to Cart</button>
             </div>
